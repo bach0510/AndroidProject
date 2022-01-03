@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home"
@@ -43,25 +45,32 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@+id/app_name"
-            android:background="@color/white"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
-            android:elevation="8dp"
+            android:layout_marginRight="40dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginRight="40dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Search"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"/>
-            <ImageView
+            android:background="@color/white"
+            android:elevation="8dp">
+
+            <ImageButton
+                android:id="@+id/searchIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/search"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="15dp"
+                android:background="@color/white"
+                android:src="@drawable/search"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/searchText"
+                android:layout_width="288dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="Search"
+                android:inputType="textPersonName"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </RelativeLayout>
 
@@ -179,8 +188,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>
