@@ -1,2 +1,5 @@
-package edu.xda.petstore;public class HomeAdapter {
+package edu.xda.petstore;
+
+public class HomeAdapter {
+
 }

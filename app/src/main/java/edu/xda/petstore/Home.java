@@ -2,6 +2,7 @@ package edu.xda.petstore;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import java.util.List;
 public class Home extends AppCompatActivity {
 
     ImageButton searchIcon;
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,16 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(Home.this,"Đã Search", Toast.LENGTH_SHORT).show();
+
+        //Hooks
+        recyclerView = findViewById(R.id.rcv_home);
+        recyclerView();
+            }
+
+            private void recyclerView() {
+
+                recyclerView.setHasFixedSize(true);
+               // recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
             }
         });
     }
