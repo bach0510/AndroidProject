@@ -16,4 +16,7 @@ public interface PetDAO {
 
     @Query("select * from pet")
     List<Pet> getListPet();
+
+    @Query("select * from pet where maGiong like '%' || :input || '%'  or tenGiong like '%' || :input || '%' ")
+    List<Pet> searchPet(String input);
 }

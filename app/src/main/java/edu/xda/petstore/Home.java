@@ -43,6 +43,11 @@ public class Home extends AppCompatActivity {
         setRecyclerView(petList);
     }
 
+    void searchPetByInput(String input){
+        petList = PetDatabase.getInstance(this).petDao().searchPet(input);
+        setRecyclerView(petList);
+    }
+
     private void setRecyclerView(List<Pet> petList){
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -73,7 +78,7 @@ public class Home extends AppCompatActivity {
                 Toast.makeText(Home.this,"Đã Search", Toast.LENGTH_SHORT).show();
 
                 //recyclerView();
-                searchPet();
+                searchPetByInput(searchText.getText().toString());
                 searchText.clearFocus();
                 hideKeyboard(Home.this, view);
             }

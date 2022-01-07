@@ -46,7 +46,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
 //        ImageView image=new ImageView(this);
             holder.petImage.setImageBitmap(bmp);
         }
-        holder.petText.setText(petList.get(position).getTenGiong());
+        holder.petText.setText(petList.get(position).getMaGiong() + '-' + petList.get(position).getTenGiong());
         holder.petPriceText.setText(String.valueOf(petList.get(position).getDonGia())+"VND");
     }
 
