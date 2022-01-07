@@ -75,7 +75,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //addPet();
-                Toast.makeText(Home.this,"Đã Search", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Home.this,"Đã Search", Toast.LENGTH_SHORT).show();
 
                 //recyclerView();
                 searchPetByInput(searchText.getText().toString());

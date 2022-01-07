@@ -1,6 +1,7 @@
 package edu.xda.petstore.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.xda.petstore.PetDetail;
 import edu.xda.petstore.R;
 import edu.xda.petstore.model.Pet;
 
@@ -47,7 +49,16 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
             holder.petImage.setImageBitmap(bmp);
         }
         holder.petText.setText(petList.get(position).getMaGiong() + '-' + petList.get(position).getTenGiong());
-        holder.petPriceText.setText(String.valueOf(petList.get(position).getDonGia())+"VND");
+        holder.petPriceText.setText(String.valueOf(petList.get(position).getDonGia())+" VNĐ");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, PetDetail.class);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
