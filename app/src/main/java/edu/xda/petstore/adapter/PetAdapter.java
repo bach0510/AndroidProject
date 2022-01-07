@@ -3,6 +3,7 @@ package edu.xda.petstore.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +39,9 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull PetViewHolder holder, int position) {
 
-        byte[] blob= petList.get(position).getAnh();
-        if (blob != null){
+
+        if (petList.get(position).getAnh() != null){
+            byte[] blob= Base64.decode( petList.get(position).getAnh(), Base64.DEFAULT);
             Bitmap bmp= BitmapFactory.decodeByteArray(blob,0,blob.length);
 //        ImageView image=new ImageView(this);
             holder.petImage.setImageBitmap(bmp);

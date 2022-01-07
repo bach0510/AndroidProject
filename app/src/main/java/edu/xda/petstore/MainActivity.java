@@ -2,6 +2,7 @@ package edu.xda.petstore;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import edu.xda.petstore.database.PetDatabase;
 import edu.xda.petstore.sqlite.SqliteHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
+//        Room.databaseBuilder(this, PetDatabase.class,"pet.db")
+//                .createFromAsset("database/pet.db")
+//                .allowMainThreadQueries()
+//                .build();
         //Animation
         topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);

@@ -5,9 +5,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ public class Home extends AppCompatActivity {
 
     ImageButton searchIcon;
 
+    TextView searchText;
     RecyclerView recyclerView;
     PetAdapter petAdapter;
     List<Pet> petList;
@@ -47,6 +50,11 @@ public class Home extends AppCompatActivity {
         recyclerView.setAdapter(petAdapter);
     }
 
+    public void hideKeyboard(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Home.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,16 +62,20 @@ public class Home extends AppCompatActivity {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         searchIcon = findViewById(R.id.searchIcon);
-        searchIcon.setOnClickListener(new View.OnClickListener() {
+        searchText = findViewById(R.id.searchText);
+        recyclerView = findViewById(R.id.rcv_home);
+        // search tự động dữ liệu về pet trong data base
+        searchPet();
+        searchIcon.setOnClickListener(new View.OnClickListener() { //bắt sựu kiện onclick cho nút search
             @Override
             public void onClick(View view) {
                 //addPet();
                 Toast.makeText(Home.this,"Đã Search", Toast.LENGTH_SHORT).show();
 
-                //Hooks
-                recyclerView = findViewById(R.id.rcv_home);
-                recyclerView();
+                //recyclerView();
                 searchPet();
+                searchText.clearFocus();
+                hideKeyboard(Home.this, view);
             }
 
             private void recyclerView() {

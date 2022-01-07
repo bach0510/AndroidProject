@@ -2,214 +2,222 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home"
+    android:fitsSystemWindows="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    tools:context=".Home">
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/vav_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/vav_main"
-        app:headerLayout="@layout/menu_header"
-        android:layout_gravity="start"/>
+        android:layout_gravity="start"
+        app:headerLayout="@layout/menu_header" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/menu"
-            android:layout_centerVertical="true"/>
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="5dp"
-            android:src="@drawable/cart" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/app_name"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Welcom to PetStore"
-            android:textSize="24sp"/>
+            android:padding="20dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/menu" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:src="@drawable/cart" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@+id/app_name"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/white"
-            android:elevation="8dp">
+            android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/searchIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
+            <TextView
+                android:id="@+id/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Welcom to PetStore"
+                android:textSize="24sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/app_name"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="20dp"
                 android:background="@color/white"
-                android:src="@drawable/search"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:elevation="8dp">
 
-            <EditText
-                android:id="@+id/searchText"
-                android:layout_width="288dp"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:hint="Search"
-                android:inputType="textPersonName"
-                tools:ignore="TouchTargetSizeCheck" />
+                <ImageButton
+                    android:id="@+id/searchIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/white"
+                    android:src="@drawable/search"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/searchText"
+                    android:layout_width="288dp"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:hint="Search"
+                    android:inputType="textPersonName"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-----------CAT---------------
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            ----------CAT---------------
 
-            <RelativeLayout
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@color/violet"
-                android:elevation="8dp"
-                android:layout_margin="10dp">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/cat" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cat"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"/>
-        </LinearLayout>
-----------DOG---------------
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@color/green"
-                android:elevation="8dp"
-                android:layout_margin="10dp">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/dog"
-                    android:layout_centerInParent="true"/>
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/violet"
+                    android:elevation="8dp">
 
-            <TextView
-                android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/cat" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Cat"
+                    android:textAlignment="center" />
+            </LinearLayout>
+            ----------DOG---------------
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dog"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"/>
-        </LinearLayout>
-----------BIRD-------------
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@color/orange"
-                android:elevation="8dp"
-                android:layout_margin="10dp">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/bird"
-                    android:layout_centerInParent="true"/>
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/green"
+                    android:elevation="8dp">
 
-            <TextView
-                android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/dog" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Dog"
+                    android:textAlignment="center" />
+            </LinearLayout>
+            ----------BIRD-------------
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bird"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"/>
-        </LinearLayout>
----------ORTHER
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@color/blue"
-                android:elevation="8dp"
-                android:layout_margin="10dp">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/cat"
-                    android:layout_centerInParent="true"/>
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/orange"
+                    android:elevation="8dp">
 
-            <TextView
-                android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/bird" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Bird"
+                    android:textAlignment="center" />
+            </LinearLayout>
+            ---------ORTHER
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="Mouse"
-                android:textAlignment="center" />
-        </LinearLayout>
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/blue"
+                    android:elevation="8dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/cat" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Mouse"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/rcv_home"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
-
-
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
