@@ -12,7 +12,7 @@ public class ConnectionHelper {
     private static String ip = "localhost";
     private static String port = "1433";
     private static String Classes = "net.sourceforge.jtds.jdbc.Driver";
-    private static String database = "test";
+    private static String database = "PetData";
     private static String username = "admin";
     private static String password = "admin";
     private static String url = "jdbc:jtds:sqlserver://"+ip+":"+port+"/"+database;

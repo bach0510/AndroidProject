@@ -3,16 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_cat.xml" value="0.20416666666666666" />
+        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/AndroidProject/app/src/main/res/layout/activity_cat.xml" value="0.25" />
-        <entry key="..\:/AndroidProject/app/src/main/res/layout/activity_home.xml" value="0.12" />
-        <entry key="..\:/AndroidProject/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/AndroidProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/AndroidProject/app/src/main/res/layout/list_home.xml" value="0.1" />
-        <entry key="..\:/AndroidProject/app/src/main/res/layout/menu_header.xml" value="0.1" />
-        <entry key="..\:/AndroidProject/app/src/main/res/menu/main_menu.xml" value="0.1" />
+        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/item_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/list_home.xml" value="0.1" />
+        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/pet_row_item.xml" value="0.25" />
         <entry key="..\:/PetStore/app/src/main/res/drawable/card.xml" value="0.21388888888888888" />
         <entry key="..\:/PetStore/app/src/main/res/layout/activity_cat.xml" value="0.2359375" />
         <entry key="..\:/PetStore/app/src/main/res/layout/activity_home.xml" value="0.1" />

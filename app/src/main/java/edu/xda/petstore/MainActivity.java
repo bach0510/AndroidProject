@@ -12,6 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import edu.xda.petstore.sqlite.SqliteHelper;
+
 public class MainActivity extends AppCompatActivity {
 
     private  static  int SPLASH_SCREEN = 5000;
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView image;
     TextView logo;
     ActionBar actionBar;
+
+    SqliteHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
