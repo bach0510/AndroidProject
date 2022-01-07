@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 //                .createFromAsset("database/pet.db")
 //                .allowMainThreadQueries()
 //                .build();
-        
+
         //Animation
         topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);

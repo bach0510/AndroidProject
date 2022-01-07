@@ -17,7 +17,7 @@ public abstract class PetDatabase extends RoomDatabase {
 
     public static synchronized  PetDatabase getInstance(Context context){
         if(instance == null){
-            instance = Room.databaseBuilder(context.getApplicationContext(),PetDatabase.class,"pet2.db")
+            instance = Room.databaseBuilder(context.getApplicationContext(),PetDatabase.class,"pet.db")
                     .createFromAsset("database/pet.db")
                     .allowMainThreadQueries()
                     .build();
