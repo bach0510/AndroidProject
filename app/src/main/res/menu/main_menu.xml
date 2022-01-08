@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:id="@+id/home_menu"
+        android:title="Home" />
+    <item
+        android:id="@+id/personal_menu"
+        android:title="Thông tin cá nhân" />
+    <item
+        android:id="@+id/logout_menu"
+        android:title="Đăng xuất" />
 </menu>

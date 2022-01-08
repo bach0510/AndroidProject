@@ -1,5 +1,6 @@
 package edu.xda.petstore;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,7 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -38,6 +41,8 @@ public class Home extends AppCompatActivity {
     PetAdapter petAdapter;
     List<Pet> petList;
     SqliteHelper db;
+
+    NavigationView navView;
 
     void addPet(){
 //        Pet pet = new Pet(1,"","","",1,null);
@@ -76,9 +81,30 @@ public class Home extends AppCompatActivity {
         searchText = findViewById(R.id.searchText);
         recyclerView = findViewById(R.id.rcv_home);
         menuIcon = findViewById(R.id.menuIcon);
+        navView = findViewById(R.id.nav_main);
 
         //tìm drawer layout
         final DrawerLayout navbar = findViewById(R.id.drawerLayout);
+
+        navView.setCheckedItem(R.id.home_menu);
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.home_menu:
+                        Intent i = new Intent(Home.this, Home.class);
+                        Home.this.startActivity(i);
+                        break;
+                    case R.id.logout_menu:
+                        Intent i1 = new Intent(Home.this, Login.class);
+                        Home.this.startActivity(i1);
+                        Toast.makeText(Home.this,"Logout", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
 
         menuIcon.setOnClickListener(new View.OnClickListener() { // bắt sự kiện mở menu bằng menu icon
             @Override
