@@ -5,21 +5,22 @@
     android:id="@+id/petItem"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/ripple_effect"
     tools:context=".Cat">
 
     <ImageView
         android:id="@+id/petImage"
         android:layout_width="111dp"
         android:layout_height="115dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@drawable/card" />
 
     <TextView
         android:id="@+id/petText"
-        android:layout_width="478dp"
-        android:layout_height="30dp"
+        android:layout_width="260dp"
+        android:layout_height="34dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
@@ -32,7 +33,7 @@
         android:layout_width="231dp"
         android:layout_height="29dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="34dp"
         android:text="TextView"
         android:textAlignment="textEnd"
         android:textSize="16sp"
