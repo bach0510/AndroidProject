@@ -1,6 +1,8 @@
 package edu.xda.petstore;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,8 +14,11 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +31,7 @@ import edu.xda.petstore.sqlite.SqliteHelper;
 public class Home extends AppCompatActivity {
 
     ImageButton searchIcon;
+    ImageView menuIcon;
 
     TextView searchText;
     RecyclerView recyclerView;
@@ -69,6 +75,17 @@ public class Home extends AppCompatActivity {
         searchIcon = findViewById(R.id.searchIcon);
         searchText = findViewById(R.id.searchText);
         recyclerView = findViewById(R.id.rcv_home);
+        menuIcon = findViewById(R.id.menuIcon);
+
+        //tìm drawer layout
+        final DrawerLayout navbar = findViewById(R.id.drawerLayout);
+
+        menuIcon.setOnClickListener(new View.OnClickListener() { // bắt sự kiện mở menu bằng menu icon
+            @Override
+            public void onClick(View view) {
+                navbar.openDrawer(GravityCompat.START);
+            }
+        });
         // search tự động dữ liệu về pet trong data base
         searchPet();
         searchIcon.setOnClickListener(new View.OnClickListener() { //bắt sựu kiện onclick cho nút search
