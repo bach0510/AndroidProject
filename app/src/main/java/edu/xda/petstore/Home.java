@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -86,7 +87,8 @@ public class Home extends AppCompatActivity {
         //tìm drawer layout
         final DrawerLayout navbar = findViewById(R.id.drawerLayout);
 
-        navView.setCheckedItem(R.id.home_menu);
+//        navView.setCheckedItem(R.id.home_menu);
+        navView.getMenu().getItem(0).setChecked(true);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
 
             @Override
@@ -99,6 +101,7 @@ public class Home extends AppCompatActivity {
                     case R.id.logout_menu:
                         Intent i1 = new Intent(Home.this, Login.class);
                         Home.this.startActivity(i1);
+
                         Toast.makeText(Home.this,"Logout", Toast.LENGTH_SHORT).show();
                         break;
                 }

@@ -56,6 +56,11 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context, PetDetail.class);
+                i.putExtra("maGiong",petList.get(position).getMaGiong());
+                i.putExtra("tenGiong",petList.get(position).getTenGiong());
+                i.putExtra("moTa",petList.get(position).getMoTa());
+                i.putExtra("donGia",petList.get(position).getDonGia());
+                i.putExtra("anh",petList.get(position).getAnh());
                 context.startActivity(i);
             }
         });
