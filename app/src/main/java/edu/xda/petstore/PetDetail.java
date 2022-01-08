@@ -1,12 +1,14 @@
 package edu.xda.petstore;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,5 +43,13 @@ public class PetDetail extends AppCompatActivity {
 //        ImageView image=new ImageView(this);
             anh.setImageBitmap(bmp);
         }
+
+        findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() { // bắt sự kiện mở menu bằng menu icon
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PetDetail.this, Home.class);
+                PetDetail.this.startActivity(i);
+            }
+        });
     }
 }

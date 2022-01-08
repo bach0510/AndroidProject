@@ -43,6 +43,8 @@ public class Home extends AppCompatActivity {
     List<Pet> petList;
     SqliteHelper db;
 
+    LinearLayout cat,dog,bird,mouse;
+
     NavigationView navView;
 
     void addPet(){
@@ -83,6 +85,44 @@ public class Home extends AppCompatActivity {
         recyclerView = findViewById(R.id.rcv_home);
         menuIcon = findViewById(R.id.menuIcon);
         navView = findViewById(R.id.nav_main);
+
+        cat = findViewById(R.id.cat_type);
+        dog = findViewById(R.id.dog_type);
+        bird = findViewById(R.id.bird_type);
+        mouse = findViewById(R.id.mouse_type);
+
+        cat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this, PetTypeList.class);
+                i.putExtra("type",2);
+                Home.this.startActivity(i);
+            }
+        });
+        dog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this, PetTypeList.class);
+                i.putExtra("type",1);
+                Home.this.startActivity(i);
+            }
+        });
+        bird.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this, PetTypeList.class);
+                i.putExtra("type",3);
+                Home.this.startActivity(i);
+            }
+        });
+        mouse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this, PetTypeList.class);
+                i.putExtra("type",4);
+                Home.this.startActivity(i);
+            }
+        });
 
         //tìm drawer layout
         final DrawerLayout navbar = findViewById(R.id.drawerLayout);
