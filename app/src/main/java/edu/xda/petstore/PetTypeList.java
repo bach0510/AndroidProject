@@ -74,5 +74,14 @@ public class PetTypeList extends AppCompatActivity {
                 //recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true));
             }
         });
+
+        findViewById(R.id.back_button2).setOnClickListener(new View.OnClickListener() { // bắt sự kiện mở menu bằng menu icon
+            @Override
+            public void onClick(View view) {
+                finish();
+//                Intent i = new Intent(PetTypeList.this, Home.class);
+//                PetTypeList.this.startActivity(i);
+            }
+        });
     }
 }

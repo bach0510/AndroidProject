@@ -47,8 +47,9 @@ public class PetDetail extends AppCompatActivity {
         findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() { // bắt sự kiện mở menu bằng menu icon
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PetDetail.this, Home.class);
-                PetDetail.this.startActivity(i);
+                finish();
+//                Intent i = new Intent(PetDetail.this, Home.class);
+//                PetDetail.this.startActivity(i);
             }
         });
     }
