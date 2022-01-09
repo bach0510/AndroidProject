@@ -9,9 +9,11 @@ import androidx.room.RoomDatabase;
 import edu.xda.petstore.dao.CartDAO;
 import edu.xda.petstore.dao.PetDAO;
 import edu.xda.petstore.dao.UserDAO;
+import edu.xda.petstore.model.Cart;
 import edu.xda.petstore.model.Pet;
+import edu.xda.petstore.model.User;
 
-@Database(entities = {Pet.class},version = 1)
+@Database(entities = {Pet.class, User.class, Cart.class},version = 1)
 public abstract class PetDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "pet.db";
@@ -25,6 +27,9 @@ public abstract class PetDatabase extends RoomDatabase {
                     .build();
         }
         return instance;
+    }
+    public static void destroyInstance() {
+        instance = null;
     }
 
     public abstract PetDAO petDao();

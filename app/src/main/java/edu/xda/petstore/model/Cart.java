@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 public class Cart {
     @PrimaryKey(autoGenerate = true)
     int id ;
+
     int userId;
     int petId;
 
