@@ -19,5 +19,5 @@ public interface UserDAO {
     void updateUser(User user);
 
     @Query("select * from user where username = :username and password = :password")
-    List<User> searchUserByUserNameAndPass(String username,String password);
+    User searchUserByUserNameAndPass(String username,String password);
 }
