@@ -11,6 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PetStore">
         <activity
+            android:name=".CartIcon"
+            android:exported="true" />
+        <activity
+            android:name=".CartInfo"
+            android:exported="true" />
+        <activity
             android:name=".PetTypeList"
             android:exported="true" />
         <activity

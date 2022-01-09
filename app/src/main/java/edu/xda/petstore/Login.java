@@ -29,6 +29,10 @@ public class Login extends AppCompatActivity {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    User getCurrentUser(){
+        return currentUser;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,7 @@ public class Login extends AppCompatActivity {
                 currentUser = PetDatabase.getInstance(Login.this).userDao().searchUserByUserNameAndPass(username.getText().toString(),password.getText().toString());
                 if(currentUser != null){
                     Intent i = new Intent(Login.this, Home.class);
+                    i.putExtra("userId",currentUser.getId());
                     Login.this.startActivity(i);
                 }
                 else {
@@ -51,6 +56,8 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+
+
 
     }
 }

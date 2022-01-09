@@ -29,6 +29,7 @@ import java.util.List;
 
 import edu.xda.petstore.adapter.PetAdapter;
 import edu.xda.petstore.database.PetDatabase;
+import edu.xda.petstore.model.Cart;
 import edu.xda.petstore.model.Pet;
 import edu.xda.petstore.sqlite.SqliteHelper;
 
@@ -62,6 +63,11 @@ public class Home extends AppCompatActivity {
         setRecyclerView(petList);
     }
 
+    int coutNumberPetInCart(){
+        int userId = getIntent().getExtras().getInt("userId");
+        return PetDatabase.getInstance(this).cartDao().searchCart(userId).size();
+    }
+
     private void setRecyclerView(List<Pet> petList){
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -91,6 +97,17 @@ public class Home extends AppCompatActivity {
         bird = findViewById(R.id.bird_type);
         mouse = findViewById(R.id.mouse_type);
 
+        CartIcon homeCart = new CartIcon(findViewById(R.id.home_cart));
+        homeCart.setNumber(coutNumberPetInCart());
+
+        findViewById(R.id.home_cart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this, CartInfo.class);
+                Home.this.startActivity(i);
+            }
+        });
+
         cat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +128,6 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, PetTypeList.class);
-                i.putExtra("type",3);
                 Home.this.startActivity(i);
             }
         });

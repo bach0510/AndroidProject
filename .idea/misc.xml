@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android project/PetStore/app/src/main/res/drawable/ripple_effect.xml" value="0.2203125" />
+        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_cart.xml" value="0.1" />
+        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_cart_icon.xml" value="0.5" />
+        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_cart_info.xml" value="0.18" />
         <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_cat.xml" value="0.20416666666666666" />
-        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_home.xml" value="0.2931854199683043" />
+        <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Android project/PetStore/app/src/main/res/layout/activity_pet_detail.xml" value="0.16" />
