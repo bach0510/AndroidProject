@@ -10,36 +10,41 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.xda.petstore.Login;
 import edu.xda.petstore.PetDetail;
 import edu.xda.petstore.R;
+import edu.xda.petstore.database.PetDatabase;
+import edu.xda.petstore.model.Cart;
 import edu.xda.petstore.model.Pet;
 
-public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     Context context;
     List<Pet> petList;
 
-    public PetAdapter(Context context, List<Pet> petList) {
+    public CartAdapter(Context context, List<Pet> petList) {
         this.context = context;
         this.petList = petList;
     }
 
     @NonNull
     @Override
-    public PetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.pet_row_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.cart_row_item, parent, false);
 
-        return new PetViewHolder(view);
+        return new CartViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PetViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
 
 
         if (petList.get(position).getAnh() != null){
@@ -61,10 +66,19 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
                 i.putExtra("moTa",petList.get(position).getMoTa());
                 i.putExtra("donGia",petList.get(position).getDonGia());
                 i.putExtra("anh",petList.get(position).getAnh());
-                i.putExtra("id",petList.get(position).getId());
                 context.startActivity(i);
             }
         });
+
+//        holder.delete_cart.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+////                PetDatabase.getInstance(context).cartDao().deleteCart(new Cart(1,1));
+//                Toast.makeText(context,"Đã xóa", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
     }
 
     @Override
@@ -72,15 +86,18 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         return petList.size();
     }
 
-    public  static class PetViewHolder extends RecyclerView.ViewHolder{
+    public  static class CartViewHolder extends RecyclerView.ViewHolder{
 
         ImageView petImage;
         TextView petText;
         TextView petPriceText;
+//        ConstraintLayout item_cart;
+        ImageView delete_cart;
 
-        public PetViewHolder(@NonNull View itemView) {
+        public CartViewHolder(@NonNull View itemView) {
             super(itemView);
 
+//            item_cart = itemView.findViewById(R.id.item_cart);
             petImage = itemView.findViewById(R.id.petImage);
             petText = itemView.findViewById(R.id.petText);
             petPriceText = itemView.findViewById(R.id.petPriceText);

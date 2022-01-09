@@ -38,8 +38,7 @@ public class Cart {
         this.petId = petId;
     }
 
-    public Cart(int id, int userId, int petId) {
-        this.id = id;
+    public Cart( int userId, int petId) {
         this.userId = userId;
         this.petId = petId;
     }

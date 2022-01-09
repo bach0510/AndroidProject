@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import edu.xda.petstore.adapter.CartAdapter;
 import edu.xda.petstore.adapter.PetAdapter;
 import edu.xda.petstore.database.PetDatabase;
 import edu.xda.petstore.model.Pet;
@@ -21,7 +22,7 @@ import edu.xda.petstore.model.Pet;
 public class CartInfo extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    PetAdapter petAdapter;
+    CartAdapter cartAdapter;
     List<Pet> petList;
 
     void searchCart(int userId){
@@ -32,8 +33,8 @@ public class CartInfo extends AppCompatActivity {
     private void setRecyclerView(List<Pet> petList){
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
-        petAdapter = new PetAdapter(this,petList);
-        recyclerView.setAdapter(petAdapter);
+        cartAdapter = new CartAdapter(this,petList);
+        recyclerView.setAdapter(cartAdapter);
     }
 
     public void hideKeyboard(Context context, View view) {
@@ -46,7 +47,7 @@ public class CartInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_info);
 
-        recyclerView = findViewById(R.id.rcv_home);
+        recyclerView = findViewById(R.id.rcv_cart);
 
         Intent i = getIntent();
         searchCart(Login.currentUser.getId());

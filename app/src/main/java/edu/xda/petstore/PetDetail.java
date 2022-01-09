@@ -8,14 +8,26 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import edu.xda.petstore.database.PetDatabase;
+import edu.xda.petstore.model.Cart;
 
 public class PetDetail extends AppCompatActivity {
 
     ImageView anh;
     TextView tenGiong , moTa, donGia;
+
+    int coutNumberPetInCart(){
+//        int userId = getIntent().getExtras().getInt("userId");
+        int userId = Login.currentUser.getId();
+        return PetDatabase.getInstance(this).cartDao().searchCart(userId).size();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +56,25 @@ public class PetDetail extends AppCompatActivity {
             anh.setImageBitmap(bmp);
         }
 
-        findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() { // bắt sự kiện mở menu bằng menu icon
+        findViewById(R.id.cart_detail).setOnClickListener(new View.OnClickListener() { // bắt sự kiện mở menu bằng menu icon
             @Override
             public void onClick(View view) {
-                finish();
+                Cart cartInfo = new Cart(Login.currentUser.getId(),i.getExtras().getInt("id"));
+                PetDatabase.getInstance(PetDetail.this).cartDao().insertCart(cartInfo);
+                Toast.makeText(PetDetail.this,"Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                //Intent i = new Intent(PetDetail.this, Home.class);
+                //i.putExtra("number",coutNumberPetInCart());
 //                Intent i = new Intent(PetDetail.this, Home.class);
 //                PetDetail.this.startActivity(i);
+            }
+        });
+
+        findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // finish();
+                Intent i = new Intent(PetDetail.this, Home.class);
+                PetDetail.this.startActivity(i);
             }
         });
     }
