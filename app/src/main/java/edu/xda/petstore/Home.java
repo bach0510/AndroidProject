@@ -64,7 +64,8 @@ public class Home extends AppCompatActivity {
     }
 
     int coutNumberPetInCart(){
-        int userId = getIntent().getExtras().getInt("userId");
+//        int userId = getIntent().getExtras().getInt("userId");
+        int userId = Login.currentUser.getId();
         return PetDatabase.getInstance(this).cartDao().searchCart(userId).size();
     }
 
@@ -156,6 +157,7 @@ public class Home extends AppCompatActivity {
                         break;
                     case R.id.logout_menu:
                         Intent i1 = new Intent(Home.this, Login.class);
+                        Login.currentUser = null;
                         Home.this.startActivity(i1);
 
                         Toast.makeText(Home.this,"Logout", Toast.LENGTH_SHORT).show();

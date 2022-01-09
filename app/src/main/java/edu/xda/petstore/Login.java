@@ -22,14 +22,14 @@ public class Login extends AppCompatActivity {
 
     TextInputEditText username, password;
 
-    public User currentUser = null;
+    public static User currentUser = null;
 
     public void hideKeyboard(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Home.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    User getCurrentUser(){
+    public static User getCurrentUser(){
         return currentUser;
     }
 
