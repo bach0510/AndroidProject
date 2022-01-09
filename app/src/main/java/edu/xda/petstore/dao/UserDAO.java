@@ -6,21 +6,14 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import edu.xda.petstore.model.Pet;
+import edu.xda.petstore.model.User;
 
 @Dao
 public interface UserDAO {
 
     @Insert
-    void insertPet(Pet pet);
+    void insertUser(User user);
 
-    @Query("select * from pet")
-    List<Pet> getListPet();
-
-    @Query("select * from pet where maGiong like '%' || :input || '%'  or tenGiong like '%' || :input || '%' ")
-    List<Pet> searchPet(String input);
-
-    @Query("select * from pet where  loaiId = :type and  maGiong like '%' || :input || '%'  or loaiId = :type and tenGiong like '%' || :input || '%'  ")
-    List<Pet> searchPetByType(String input,int type);
-
+    @Query("select * from user where username = :username and password = :password")
+    List<User> searchUserByUserNameAndPass(String username,String password);
 }
