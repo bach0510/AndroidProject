@@ -1,5 +1,6 @@
 package edu.xda.petstore.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,7 +9,9 @@ public class Cart {
     @PrimaryKey(autoGenerate = true)
     int id ;
 
+    @NonNull
     int userId;
+    @NonNull
     int petId;
 
     public int getId() {

@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".PetTypeList">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="273dp"
+        android:layout_height="61dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/main" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,7 +77,7 @@
         android:id="@+id/pet_type"
         android:layout_width="150dp"
         android:layout_height="29dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="60dp"
         android:text="TextView"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"

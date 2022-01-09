@@ -1,5 +1,7 @@
 package edu.xda.petstore.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,7 +10,9 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     int id ;
 
+    @NonNull
     String username;
+    @NonNull
     String password;
     String name;
     String tel;

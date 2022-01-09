@@ -24,6 +24,7 @@ public class PetTypeList extends AppCompatActivity {
     ImageButton searchIcon;
 
     TextView searchText;
+    TextView petType;
     RecyclerView recyclerView;
     PetAdapter petAdapter;
     List<Pet> petList;
@@ -56,6 +57,8 @@ public class PetTypeList extends AppCompatActivity {
 
         Intent i = getIntent();
         searchPetByInput("",i.getExtras().getInt("type"));
+        petType = findViewById(R.id.pet_type);
+        petType.setText(i.getExtras().getInt("type") == 1? "Chó": i.getExtras().getInt("type") == 2 ? "Mèo" : i.getExtras().getInt("type") == 3 ? "Chim" : "Chuột");
         searchIcon.setOnClickListener(new View.OnClickListener() { //bắt sựu kiện onclick cho nút search
             @Override
             public void onClick(View view) {
