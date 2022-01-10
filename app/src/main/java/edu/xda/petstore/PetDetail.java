@@ -9,9 +9,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -105,6 +107,10 @@ public class PetDetail extends AppCompatActivity {
                 final EditText address = new EditText(PetDetail.this);
                 final TextView telTxt = new TextView(PetDetail.this);
                 final TextView addressTxt = new TextView(PetDetail.this);
+                final Button confirm = new Button(PetDetail.this);
+                confirm.setText("Xác nhận");
+
+
                 telTxt.setText("Số điện thoại liên hệ");
                 addressTxt.setText("Địa chỉ liên hệ/ nhận hàng");
                 tel.setText(Login.currentUser.getTel());
@@ -117,31 +123,27 @@ public class PetDetail extends AppCompatActivity {
                 layout.addView(tel);
                 layout.addView(addressTxt);
                 layout.addView(address);
+                layout.addView(confirm);
                 builder.setView(layout);
-
-
-                builder.setPositiveButton("Xác nhận thông tin", new DialogInterface.OnClickListener() {
+                confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if (tel.getText().toString() == "" || address.getText().toString() == ""){
-                            Toast.makeText(PetDetail.this,"Vui lòng cung cấp thông tin xác nhận trước khi mua hàng", Toast.LENGTH_SHORT).show();
+                    public void onClick(View view) {
+                        if (TextUtils.isEmpty(tel.getText()) || TextUtils.isEmpty(address.getText())){
+                            Toast.makeText(PetDetail.this,"Vui lòng cung cấp đầy đủ thông tin xác nhận trước khi mua hàng", Toast.LENGTH_SHORT).show();
                         }
                         else{
                             User u = Login.currentUser;
                             u.setAddress(address.getText().toString());
                             u.setTel(tel.getText().toString());
                             PetDatabase.getInstance(PetDetail.this).userDao().updateUser(u);
+                            dialog.dismiss();
                             Toast.makeText(PetDetail.this,"Cám ơn đã mua hàng của cửa hàng PetStore , chúng tôi sẽ liên hệ và giao hàng cho bạn sớm nhất có thể", Toast.LENGTH_SHORT).show();
 
                         }
-                    }
-                });
-                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 });
+
                 dialog = builder.create();
                 dialog.show();
 
