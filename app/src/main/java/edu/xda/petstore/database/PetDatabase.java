@@ -2,6 +2,7 @@ package edu.xda.petstore.database;
 
 import android.content.Context;
 
+import androidx.annotation.Keep;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -16,6 +17,7 @@ import edu.xda.petstore.model.Pet;
 import edu.xda.petstore.model.User;
 
 @Database(entities = {Pet.class, User.class, Cart.class},version = 3)
+@Keep
 public abstract class PetDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "pet.db";
@@ -39,7 +41,7 @@ public abstract class PetDatabase extends RoomDatabase {
         if(instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),PetDatabase.class,"pet.db")
                     .addMigrations(MIGRATION_1_2,MIGRATION_2_3)
-                    //.createFromAsset("database/pet.db")
+                    .createFromAsset("database/pet.db")
                     .allowMainThreadQueries()
                     .build();
         }

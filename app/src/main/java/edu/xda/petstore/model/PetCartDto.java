@@ -1,5 +1,8 @@
 package edu.xda.petstore.model;
 
+import androidx.annotation.Keep;
+
+@Keep
 public class PetCartDto {
     int id ;
     int cartId ;

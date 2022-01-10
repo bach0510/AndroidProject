@@ -1,9 +1,11 @@
 package edu.xda.petstore.model;
 
+import androidx.annotation.Keep;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "pet")
+@Keep
 public class Pet {
 
     @PrimaryKey(autoGenerate = true)

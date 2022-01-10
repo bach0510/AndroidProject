@@ -1,10 +1,12 @@
 package edu.xda.petstore.model;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "cart")
+@Keep
 public class Cart {
     @PrimaryKey(autoGenerate = true)
     int id ;
