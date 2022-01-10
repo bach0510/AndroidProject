@@ -79,8 +79,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
             @Override
             public void onClick(View view) {
+                //tạo dialog
                 builder = new AlertDialog.Builder(context);
-                builder.setTitle("Bạn có chắc muoions xóa khỏi giỏ hàng ?");
+                builder.setTitle("Bạn có chắc muốn xóa khỏi giỏ hàng ?");
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
-        android:text="Vui lòng đăng nhập để tiếp tục"
+        android:text="Hãy điền các thông tin cần thiết"
         android:textColor="@color/blue"
         android:textSize="18sp" />
     <LinearLayout
@@ -29,20 +29,31 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Tên ">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tên đăng nhập">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/username_txt"
+                android:id="@+id/uname_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
+
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +61,7 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password_txt"
+                android:id="@+id/pass_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
@@ -59,21 +70,20 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ripple_effect"
-        android:text="Đăng nhập"
+        android:text="Đăng ký"
         android:textColor="@color/blue" />
 
-    <TextView
-        android:id="@+id/sign_up_btn"
-        android:layout_width="258dp"
-        android:layout_height="33dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="20dp"
-        android:text="Chưa có tài khoản ? Đăng ký ngay !"
-        android:textAlignment="center"
+    <Button
+        android:id="@+id/cancel_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ripple_effect"
+        android:text="Quay lại trang đăng nhập"
         android:textColor="@color/blue" />
 
 

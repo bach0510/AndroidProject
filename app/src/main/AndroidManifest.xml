@@ -20,6 +20,9 @@
             android:name=".CartInfo"
             android:exported="true" />
         <activity
+            android:name=".SignUp"
+            android:exported="true" />
+        <activity
             android:name=".PetTypeList"
             android:exported="true" />
         <activity

@@ -23,4 +23,9 @@ public interface UserDAO {
 
     @Query("select * from user where username = :username and id <> :userId")
     List<User> checkExist(String username, int userId);
+
+    @Query("select * from user where username = :username ")
+    List<User> checkExistWhenCreate(String username );
+
+
 }
