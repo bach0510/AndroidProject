@@ -82,7 +82,7 @@ public class Home extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart() {
+    protected void onRestart() { // được call khi 1 activity con finish()
         super.onRestart();
         CartIcon homeCart = new CartIcon(findViewById(R.id.home_cart));
         homeCart.setNumber(coutNumberPetInCart());
@@ -168,6 +168,10 @@ public class Home extends AppCompatActivity {
                         Home.this.startActivity(i1);
 
                         Toast.makeText(Home.this,"Logout", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.personal_menu:
+                        Intent i2 = new Intent(Home.this, Personal.class);
+                        Home.this.startActivity(i2);
                         break;
                 }
                 return true;

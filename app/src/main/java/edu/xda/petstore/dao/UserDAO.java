@@ -20,4 +20,7 @@ public interface UserDAO {
 
     @Query("select * from user where username = :username and password = :password")
     User searchUserByUserNameAndPass(String username,String password);
+
+    @Query("select * from user where username = :username and id <> :userId")
+    List<User> checkExist(String username, int userId);
 }
