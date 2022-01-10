@@ -1,6 +1,8 @@
 package edu.xda.petstore.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,12 +26,15 @@ import edu.xda.petstore.R;
 import edu.xda.petstore.database.PetDatabase;
 import edu.xda.petstore.model.Cart;
 import edu.xda.petstore.model.Pet;
+import edu.xda.petstore.model.PetCartDto;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     Context context;
-    List<Pet> petList;
+    List<PetCartDto> petList;
+    AlertDialog dialog;
+    AlertDialog.Builder builder;
 
-    public CartAdapter(Context context, List<Pet> petList) {
+    public CartAdapter(Context context, List<PetCartDto> petList) {
         this.context = context;
         this.petList = petList;
     }
@@ -44,7 +49,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CartViewHolder holder,int position) {
 
 
         if (petList.get(position).getAnh() != null){
@@ -56,7 +61,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.petText.setText(petList.get(position).getMaGiong() + '-' + petList.get(position).getTenGiong());
         holder.petPriceText.setText(String.valueOf(petList.get(position).getDonGia())+" VNĐ");
 
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
+        holder.item_cart.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -70,15 +75,33 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
-//        holder.delete_cart.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-////                PetDatabase.getInstance(context).cartDao().deleteCart(new Cart(1,1));
-//                Toast.makeText(context,"Đã xóa", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
+        holder.delete_cart.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                builder = new AlertDialog.Builder(context);
+                builder.setTitle("Bạn có chắc muoions xóa khỏi giỏ hàng ?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        PetDatabase.getInstance(context).cartDao().deleteCartById(petList.get(position).getCartId());
+                        petList.remove(position);
+                        CartAdapter.this.notifyDataSetChanged();
+                        Toast.makeText(context,"Đã xóa", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                dialog = builder.create();
+                dialog.show();
+
+
+            }
+        });
     }
 
     @Override
@@ -91,13 +114,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         ImageView petImage;
         TextView petText;
         TextView petPriceText;
-//        ConstraintLayout item_cart;
+        ConstraintLayout item_cart;
         ImageView delete_cart;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
 
-//            item_cart = itemView.findViewById(R.id.item_cart);
+            item_cart = itemView.findViewById(R.id.item_cart);
+            delete_cart = itemView.findViewById(R.id.delete_cart);
             petImage = itemView.findViewById(R.id.petImage);
             petText = itemView.findViewById(R.id.petText);
             petPriceText = itemView.findViewById(R.id.petPriceText);

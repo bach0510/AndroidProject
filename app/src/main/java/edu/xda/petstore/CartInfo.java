@@ -18,19 +18,20 @@ import edu.xda.petstore.adapter.CartAdapter;
 import edu.xda.petstore.adapter.PetAdapter;
 import edu.xda.petstore.database.PetDatabase;
 import edu.xda.petstore.model.Pet;
+import edu.xda.petstore.model.PetCartDto;
 
 public class CartInfo extends AppCompatActivity {
 
     RecyclerView recyclerView;
     CartAdapter cartAdapter;
-    List<Pet> petList;
+    List<PetCartDto> petList;
 
     void searchCart(int userId){
         petList = PetDatabase.getInstance(this).petDao().searchCartInfo(userId);
         setRecyclerView(petList);
     }
 
-    private void setRecyclerView(List<Pet> petList){
+    private void setRecyclerView(List<PetCartDto> petList){
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         cartAdapter = new CartAdapter(this,petList);

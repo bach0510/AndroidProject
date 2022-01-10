@@ -7,6 +7,7 @@ import androidx.room.Query;
 import java.util.List;
 
 import edu.xda.petstore.model.Pet;
+import edu.xda.petstore.model.PetCartDto;
 
 @Dao
 public interface PetDAO {
@@ -23,7 +24,7 @@ public interface PetDAO {
     @Query("select * from pet where  loaiId = :type and  maGiong like '%' || :input || '%'  or loaiId = :type and tenGiong like '%' || :input || '%'  ")
     List<Pet> searchPetByType(String input,int type);
 
-    @Query("select p.* from pet p join cart c on p.id == c.petId where c.userId = :userId")
-    List<Pet> searchCartInfo(int userId);
+    @Query("select c.id as cartId, p.* from pet p join cart c on p.id == c.petId where c.userId = :userId")
+    List<PetCartDto> searchCartInfo(int userId);
 
 }

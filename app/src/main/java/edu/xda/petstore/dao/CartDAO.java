@@ -16,10 +16,13 @@ public interface CartDAO {
     @Insert
     void insertCart(Cart cart);
 
-    @Delete
-    void deleteCart(Cart cart);
+//    @Delete
+//    void deleteCart(int id);
 
     @Query("select * from cart where userId = :userId")
     List<Cart> searchCart(int userId);
+
+    @Query("Delete from cart where id = :id")
+    void deleteCartById(int id);
 
 }

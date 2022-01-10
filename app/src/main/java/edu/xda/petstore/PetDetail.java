@@ -72,9 +72,9 @@ public class PetDetail extends AppCompatActivity {
         findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // finish();
-                Intent i = new Intent(PetDetail.this, Home.class);
-                PetDetail.this.startActivity(i);
+                finish();
+//                Intent i = new Intent(PetDetail.this, Home.class);
+//                PetDetail.this.startActivity(i);
             }
         });
     }

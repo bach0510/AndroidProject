@@ -82,6 +82,13 @@ public class Home extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        CartIcon homeCart = new CartIcon(findViewById(R.id.home_cart));
+        homeCart.setNumber(coutNumberPetInCart());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
