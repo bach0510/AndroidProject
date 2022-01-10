@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -47,6 +49,9 @@ public class Home extends AppCompatActivity {
     LinearLayout cat,dog,bird,mouse;
 
     NavigationView navView;
+
+    AlertDialog dialog;
+    AlertDialog.Builder builder;
 
     void addPet(){
 //        Pet pet = new Pet(1,"","","",1,null);
@@ -164,11 +169,27 @@ public class Home extends AppCompatActivity {
                         Home.this.startActivity(i);
                         break;
                     case R.id.logout_menu:
-                        Intent i1 = new Intent(Home.this, Login.class);
-                        Login.currentUser = null;
-                        Home.this.startActivity(i1);
+                        //tạo dialog
+                        builder = new AlertDialog.Builder(Home.this);
+                        builder.setTitle("Bạn có chắc muốn đăng xuất ?");
+                        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent i1 = new Intent(Home.this, Login.class);
+                                Login.currentUser = null;
+                                Home.this.startActivity(i1);
 
-                        Toast.makeText(Home.this,"Logout", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Home.this,"Đã đăng xuất", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        dialog = builder.create();
+                        dialog.show();
                         break;
                     case R.id.personal_menu:
                         Intent i2 = new Intent(Home.this, Personal.class);

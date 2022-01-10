@@ -3,6 +3,8 @@ package edu.xda.petstore;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,17 +12,24 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import edu.xda.petstore.adapter.CartAdapter;
 import edu.xda.petstore.database.PetDatabase;
 import edu.xda.petstore.model.Cart;
+import edu.xda.petstore.model.User;
 
 public class PetDetail extends AppCompatActivity {
 
     ImageView anh;
     TextView tenGiong , moTa, donGia;
+
+    AlertDialog dialog;
+    AlertDialog.Builder builder;
 
     int coutNumberPetInCart(){
 //        int userId = getIntent().getExtras().getInt("userId");
@@ -56,16 +65,87 @@ public class PetDetail extends AppCompatActivity {
             anh.setImageBitmap(bmp);
         }
 
-        findViewById(R.id.cart_detail).setOnClickListener(new View.OnClickListener() { // bắt sự kiện mở menu bằng menu icon
+        findViewById(R.id.cart_detail).setOnClickListener(new View.OnClickListener() { // bắt
             @Override
             public void onClick(View view) {
-                Cart cartInfo = new Cart(Login.currentUser.getId(),i.getExtras().getInt("id"));
-                PetDatabase.getInstance(PetDetail.this).cartDao().insertCart(cartInfo);
-                Toast.makeText(PetDetail.this,"Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
-                //Intent i = new Intent(PetDetail.this, Home.class);
-                //i.putExtra("number",coutNumberPetInCart());
-//                Intent i = new Intent(PetDetail.this, Home.class);
-//                PetDetail.this.startActivity(i);
+                //tạo dialog
+                builder = new AlertDialog.Builder(PetDetail.this);
+                builder.setTitle("Bạn có chắc muốn thêm vào giỏ hàng ?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent i2 = getIntent();
+                        Cart cartInfo = new Cart(Login.currentUser.getId(),i2.getExtras().getInt("id"));
+                        PetDatabase.getInstance(PetDetail.this).cartDao().insertCart(cartInfo);
+                        Toast.makeText(PetDetail.this,"Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                dialog = builder.create();
+                dialog.show();
+
+
+            }
+        });
+
+        findViewById(R.id.buy_detail).setOnClickListener(new View.OnClickListener() { // bắt sự kiện mở menu bằng menu icon
+            @Override
+            public void onClick(View view) {
+                //tạo dialog
+                builder = new AlertDialog.Builder(PetDetail.this);
+                builder.setTitle("Xác nhận thông tin liên hệ");
+
+                // tạo input cho dialog xác nhận mua
+                final EditText tel = new EditText(PetDetail.this);
+                final EditText address = new EditText(PetDetail.this);
+                final TextView telTxt = new TextView(PetDetail.this);
+                final TextView addressTxt = new TextView(PetDetail.this);
+                telTxt.setText("Số điện thoại liên hệ");
+                addressTxt.setText("Địa chỉ liên hệ/ nhận hàng");
+                tel.setText(Login.currentUser.getTel());
+                address.setText(Login.currentUser.getAddress());
+                LinearLayout layout = new LinearLayout(PetDetail.this);
+
+                layout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                layout.setOrientation(LinearLayout.VERTICAL);
+                layout.addView(telTxt);
+                layout.addView(tel);
+                layout.addView(addressTxt);
+                layout.addView(address);
+                builder.setView(layout);
+
+
+                builder.setPositiveButton("Xác nhận thông tin", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (tel.getText().toString() == "" || address.getText().toString() == ""){
+                            Toast.makeText(PetDetail.this,"Vui lòng cung cấp thông tin xác nhận trước khi mua hàng", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            User u = Login.currentUser;
+                            u.setAddress(address.getText().toString());
+                            u.setTel(tel.getText().toString());
+                            PetDatabase.getInstance(PetDetail.this).userDao().updateUser(u);
+                            Toast.makeText(PetDetail.this,"Cám ơn đã mua hàng của cửa hàng PetStore , chúng tôi sẽ liên hệ và giao hàng cho bạn sớm nhất có thể", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                dialog = builder.create();
+                dialog.show();
+
+
             }
         });
 
