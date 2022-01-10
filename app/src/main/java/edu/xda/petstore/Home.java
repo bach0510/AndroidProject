@@ -136,6 +136,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, PetTypeList.class);
+                i.putExtra("type",3);
                 Home.this.startActivity(i);
             }
         });
