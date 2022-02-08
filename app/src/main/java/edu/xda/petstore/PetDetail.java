@@ -77,8 +77,17 @@ public class PetDetail extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent i2 = getIntent();
-                        Cart cartInfo = new Cart(Login.currentUser.getId(),i2.getExtras().getInt("id"));
-                        PetDatabase.getInstance(PetDetail.this).cartDao().insertCart(cartInfo);
+                        Cart cartExist = PetDatabase.getInstance(PetDetail.this).cartDao().findCart(Login.currentUser.getId(),i2.getExtras().getInt("id"));
+                        Cart cartInfo = new Cart(Login.currentUser.getId(),i2.getExtras().getInt("id"),1);
+                        if (cartExist == null){
+                            PetDatabase.getInstance(PetDetail.this).cartDao().insertCart(cartInfo);
+                        }
+                        else {
+                            int qty = cartExist.getQty();
+                            cartExist.setQty(qty += 1);
+                            PetDatabase.getInstance(PetDetail.this).cartDao().updateCart(cartExist);
+                        }
+
                         Toast.makeText(PetDetail.this,"Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
                     }
                 });

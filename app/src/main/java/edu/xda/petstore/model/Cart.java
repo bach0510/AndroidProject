@@ -15,6 +15,8 @@ public class Cart {
     int userId;
     @NonNull
     int petId;
+    @NonNull
+    int qty;
 
     public int getId() {
         return id;
@@ -32,6 +34,14 @@ public class Cart {
         this.userId = userId;
     }
 
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
     public int getPetId() {
         return petId;
     }
@@ -40,8 +50,9 @@ public class Cart {
         this.petId = petId;
     }
 
-    public Cart( int userId, int petId) {
+    public Cart( int userId, int petId ,int qty) {
         this.userId = userId;
         this.petId = petId;
+        this.qty = qty;
     }
 }

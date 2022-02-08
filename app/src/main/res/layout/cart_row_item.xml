@@ -9,19 +9,25 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_cart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="113dp"
+        app:layout_constraintEnd_toEndOf="@+id/delete_cart"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/petText"
             android:layout_width="201dp"
             android:layout_height="38dp"
-            android:layout_marginStart="16dp"
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/petPriceText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.268"
             app:layout_constraintStart_toEndOf="@+id/petImage"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/petImage"
@@ -33,24 +39,71 @@
 
         <TextView
             android:id="@+id/petPriceText"
-            android:layout_width="231dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_width="186dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
             android:text="TextView"
             android:textAlignment="textEnd"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/delete_cart"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/petImage" />
+
+        <TextView
+            android:id="@+id/qtyTxt"
+            android:layout_width="41dp"
+            android:layout_height="25dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/petPriceText"
+            app:layout_constraintEnd_toStartOf="@+id/upBtn"
+            app:layout_constraintTop_toBottomOf="@+id/petText"
+            app:layout_constraintVertical_bias="0.565" />
+
+        <ImageButton
+            android:id="@+id/upBtn"
+            android:layout_width="66dp"
+            android:layout_height="23dp"
+            android:layout_marginEnd="52dp"
+            app:layout_constraintBottom_toTopOf="@+id/downBtn"
+            app:layout_constraintEnd_toEndOf="@+id/delete_cart"
+            app:layout_constraintTop_toBottomOf="@+id/petText"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@android:drawable/arrow_up_float" />
+
+        <ImageButton
+            android:id="@+id/downBtn"
+            android:layout_width="66dp"
+            android:layout_height="23dp"
+            app:layout_constraintBottom_toTopOf="@+id/petPriceText"
+            app:layout_constraintEnd_toEndOf="@+id/delete_cart"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/qtyTxt"
+            app:srcCompat="@android:drawable/arrow_down_float" />
+
+        <ImageView
+            android:id="@+id/delete_cart"
+            android:layout_width="45dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="79dp"
+            android:layout_height="20dp"
+            android:text="số lượng :"
+            app:layout_constraintBottom_toTopOf="@+id/petPriceText"
+            app:layout_constraintEnd_toStartOf="@+id/qtyTxt"
+            app:layout_constraintHorizontal_bias="0.594"
+            app:layout_constraintStart_toEndOf="@+id/petImage"
+            app:layout_constraintTop_toBottomOf="@+id/petText"
+            app:layout_constraintVertical_bias="0.642" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/delete_cart"
-        android:layout_width="45dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="365dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_delete" />
 </androidx.constraintlayout.widget.ConstraintLayout>

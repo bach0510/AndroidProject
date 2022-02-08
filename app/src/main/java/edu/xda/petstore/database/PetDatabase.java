@@ -39,10 +39,11 @@ public abstract class PetDatabase extends RoomDatabase {
 
     public static synchronized  PetDatabase getInstance(Context context){
         if(instance == null){
-            instance = Room.databaseBuilder(context.getApplicationContext(),PetDatabase.class,"pet.db")
+            instance = Room.databaseBuilder(context.getApplicationContext(),PetDatabase.class,"petshopdb.db")
                     .addMigrations(MIGRATION_1_2,MIGRATION_2_3)
                     .createFromAsset("database/pet.db")
                     .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return instance;

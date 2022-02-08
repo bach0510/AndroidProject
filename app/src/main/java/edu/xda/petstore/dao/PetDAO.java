@@ -24,7 +24,7 @@ public interface PetDAO {
     @Query("select * from pet where  loaiId = :type and  maGiong like '%' || :input || '%'  or loaiId = :type and tenGiong like '%' || :input || '%'  ")
     List<Pet> searchPetByType(String input,int type);
 
-    @Query("select c.id as cartId, p.* from pet p join cart c on p.id == c.petId where c.userId = :userId")
+    @Query("select c.qty as qty, c.id as cartId, p.* from pet p join cart c on p.id == c.petId where c.userId = :userId")
     List<PetCartDto> searchCartInfo(int userId);
 
 }

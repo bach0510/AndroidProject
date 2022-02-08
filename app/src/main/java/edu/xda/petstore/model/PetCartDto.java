@@ -12,8 +12,9 @@ public class PetCartDto {
     String moTa;
     int donGia;
     byte[] anh;
+    int qty;
 
-    public PetCartDto(int id, int cartId, int loaiId, String maGiong, String tenGiong, String moTa, int donGia, byte[] anh) {
+    public PetCartDto(int id, int cartId, int loaiId, String maGiong, String tenGiong, String moTa, int donGia, byte[] anh,int qty) {
         this.id = id;
         this.cartId = cartId;
         this.loaiId = loaiId;
@@ -22,6 +23,7 @@ public class PetCartDto {
         this.moTa = moTa;
         this.donGia = donGia;
         this.anh = anh;
+        this.qty = qty;
     }
 
     public int getId() {
@@ -86,5 +88,13 @@ public class PetCartDto {
 
     public void setAnh(byte[] anh) {
         this.anh = anh;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 }
