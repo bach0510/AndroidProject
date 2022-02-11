@@ -110,6 +110,19 @@ public class Home extends AppCompatActivity {
         bird = findViewById(R.id.bird_type);
         mouse = findViewById(R.id.mouse_type);
 
+        //set tên cho thanh navigation
+        navView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+
+                navView.removeOnLayoutChangeListener( this );
+
+                TextView textView = (TextView) navView.findViewById(R.id.currentName);
+
+                textView.setText(Login.currentUser.getName());
+            }
+        });
+
         CartIcon homeCart = new CartIcon(findViewById(R.id.home_cart));
         homeCart.setNumber(coutNumberPetInCart());
 
