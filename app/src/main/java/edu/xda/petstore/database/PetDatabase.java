@@ -40,8 +40,8 @@ public abstract class PetDatabase extends RoomDatabase {
     public static synchronized  PetDatabase getInstance(Context context){
         if(instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),PetDatabase.class,"petshopdb.db")
-                    .addMigrations(MIGRATION_1_2,MIGRATION_2_3)
-                    .createFromAsset("database/pet.db")
+                    .addMigrations(MIGRATION_1_2,MIGRATION_2_3) // thêm migration khi database có version > 1
+                    .createFromAsset("database/pet.db")// đọc dữ liệu có sẵn từ database trong asset
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build();
@@ -52,6 +52,7 @@ public abstract class PetDatabase extends RoomDatabase {
         instance = null;
     }
 
+    // các DAO
     public abstract PetDAO petDao();
     public abstract UserDAO userDao();
     public abstract CartDAO cartDao();

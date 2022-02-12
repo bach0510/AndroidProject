@@ -33,7 +33,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
     @Override
     public PetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.pet_row_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.pet_row_item, parent, false);/// sử dụng layout pet_row_item
 
         return new PetViewHolder(view);
     }
@@ -41,7 +41,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull PetViewHolder holder, int position) {
 
-
+        // nếu ảnh của pet khác null thì set ảnh cho items
         if (petList.get(position).getAnh() != null){
             byte[] blob= Base64.decode( petList.get(position).getAnh(), Base64.DEFAULT);
             Bitmap bmp= BitmapFactory.decodeByteArray(blob,0,blob.length);
@@ -51,18 +51,19 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
         holder.petText.setText(petList.get(position).getMaGiong() + '-' + petList.get(position).getTenGiong());
         holder.petPriceText.setText(String.valueOf(petList.get(position).getDonGia())+" VNĐ");
 
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
+        holder.itemView.setOnClickListener(new View.OnClickListener(){// bắt sụ kiện mở ra màn chi tiết thú cưng
 
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context, PetDetail.class);
+                // truyền tham số cho màn chi tiết
                 i.putExtra("maGiong",petList.get(position).getMaGiong());
                 i.putExtra("tenGiong",petList.get(position).getTenGiong());
                 i.putExtra("moTa",petList.get(position).getMoTa());
                 i.putExtra("donGia",petList.get(position).getDonGia());
                 i.putExtra("anh",petList.get(position).getAnh());
                 i.putExtra("id",petList.get(position).getId());
-                context.startActivity(i);
+                context.startActivity(i);// mở activity màn chi tiết
             }
         });
     }
@@ -70,9 +71,9 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
     @Override
     public int getItemCount() {
         return petList.size();
-    }
+    } // lấy ra số lượng pet list
 
-    public  static class PetViewHolder extends RecyclerView.ViewHolder{
+    public  static class PetViewHolder extends RecyclerView.ViewHolder{ // holder để khai báo view của activity
 
         ImageView petImage;
         TextView petText;

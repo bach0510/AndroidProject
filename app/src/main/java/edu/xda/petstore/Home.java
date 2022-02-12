@@ -58,30 +58,32 @@ public class Home extends AppCompatActivity {
 //        PetDatabase.getInstance(this).petDao().insertPet(pet);
     }
 
+    // hàm search thông tin pet
     void searchPet(){
-        petList = PetDatabase.getInstance(this).petDao().getListPet();
-        setRecyclerView(petList);
+        petList = PetDatabase.getInstance(this).petDao().getListPet(); //lấy thông tin và list pet
+        setRecyclerView(petList);// set list pet cho recycle View
     }
 
+    //hàm search pet bằng thanh search
     void searchPetByInput(String input){
-        petList = PetDatabase.getInstance(this).petDao().searchPet(input);
-        setRecyclerView(petList);
+        petList = PetDatabase.getInstance(this).petDao().searchPet(input);// lấy thông tin pet
+        setRecyclerView(petList);// set list cho recycle View
     }
 
-    int coutNumberPetInCart(){
+    int coutNumberPetInCart(){ // đếm số pet trong giỏ hàng
 //        int userId = getIntent().getExtras().getInt("userId");
-        int userId = Login.currentUser.getId();
-        return PetDatabase.getInstance(this).cartDao().searchCart(userId).size();
+        int userId = Login.currentUser.getId();// đặt biến cho thông tin người dùng đăng nhập (userId)
+        return PetDatabase.getInstance(this).cartDao().searchCart(userId).size();// tìm danh sách thông tin giỏ hnagf và đếm sô sbanr ghi bằng hàm (size())
     }
 
-    private void setRecyclerView(List<Pet> petList){
+    private void setRecyclerView(List<Pet> petList){// set recycle view (input là list pet)
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         petAdapter = new PetAdapter(this,petList);
-        recyclerView.setAdapter(petAdapter);
+        recyclerView.setAdapter(petAdapter);// set adapter
     }
 
-    public void hideKeyboard(Context context, View view) {
+    public void hideKeyboard(Context context, View view) {// hàm dùng để hide đi bàn phím nhập
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Home.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
@@ -119,50 +121,58 @@ public class Home extends AppCompatActivity {
 
                 TextView textView = (TextView) navView.findViewById(R.id.currentName);
 
-                textView.setText(Login.currentUser.getName());
+                textView.setText(Login.currentUser.getName());// set text view thành tên người dùng đang đăng nhập
             }
         });
 
-        CartIcon homeCart = new CartIcon(findViewById(R.id.home_cart));
-        homeCart.setNumber(coutNumberPetInCart());
+        CartIcon homeCart = new CartIcon(findViewById(R.id.home_cart));// tạp new CartIcon
+        homeCart.setNumber(coutNumberPetInCart()); // call hàm set number cho icon giỏ hàng
+        // hàm coutNumberPetInCart dùng để return ra số pet trong giỏ hàng hiện tại
+        // setNumber là set số pet trong giỏ hàng của người dùng (hàm này public trong class CartIcon)
 
-        findViewById(R.id.home_cart).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.home_cart).setOnClickListener(new View.OnClickListener() { // set sự kiện onclick cho icon giỏ hàng
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this, CartInfo.class);
+                Intent i = new Intent(Home.this, CartInfo.class); // ra danh sách giỏ hang
                 Home.this.startActivity(i);
             }
         });
 
-        cat.setOnClickListener(new View.OnClickListener() {
+        // 4 sự kiện bên dưới dùng để mở ra trang phân loại các loại thú cưng
+        // putexxtra put thêm tham số cho activity PetTypeList để phân biệt và search loại theo tham số truyền vào trong đó
+        // mèo : type = 2
+        // chó : type = 1
+        // chim : type = 3
+        // chuột : type = 4
+        cat.setOnClickListener(new View.OnClickListener() {// set sự kiện click cho các thẻ loại thú cưng
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, PetTypeList.class);
-                i.putExtra("type",2);
+                i.putExtra("type",2);// truyền tham số loại thú cưng cho activity Pettype
                 Home.this.startActivity(i);
             }
         });
-        dog.setOnClickListener(new View.OnClickListener() {
+        dog.setOnClickListener(new View.OnClickListener() { // set sự kiện click cho các loại thẻ thú cưng
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, PetTypeList.class);
-                i.putExtra("type",1);
+                i.putExtra("type",1);// truyền tham số loại thú cưng cho activity Pettype
                 Home.this.startActivity(i);
             }
         });
-        bird.setOnClickListener(new View.OnClickListener() {
+        bird.setOnClickListener(new View.OnClickListener() { // set sự kiện click cho các loại thẻ thú cưng
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, PetTypeList.class);
-                i.putExtra("type",3);
+                i.putExtra("type",3);// truyền tham số loại thú cưng cho activity Pettype
                 Home.this.startActivity(i);
             }
         });
-        mouse.setOnClickListener(new View.OnClickListener() {
+        mouse.setOnClickListener(new View.OnClickListener() { // set sự kiện click cho các loại thẻ thú cưng
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, PetTypeList.class);
-                i.putExtra("type",4);
+                i.putExtra("type",4);// truyền tham số loại thú cưng cho activity Pettype
                 Home.this.startActivity(i);
             }
         });
@@ -171,21 +181,23 @@ public class Home extends AppCompatActivity {
         final DrawerLayout navbar = findViewById(R.id.drawerLayout);
 
 //        navView.setCheckedItem(R.id.home_menu);
-        navView.getMenu().getItem(0).setChecked(true);
+
+        navView.getMenu().getItem(0).setChecked(true); // tự động set item đang đc select là item đầu
+        // bắt sự kiện chọn item trong thanh navigate menu
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-                    case R.id.home_menu:
+                    case R.id.home_menu:// nếu item chọn có id là home thí mở activity Home
                         Intent i = new Intent(Home.this, Home.class);
                         Home.this.startActivity(i);
                         break;
-                    case R.id.logout_menu:
-                        //tạo dialog
+                    case R.id.logout_menu:// nếu item chọn có id là Logout thì logout khỏi app
+                        //tạo dialog confirm yes no
                         builder = new AlertDialog.Builder(Home.this);
                         builder.setTitle("Bạn có chắc muốn đăng xuất ?");
-                        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() { // tạo và bắt sự kiện chọn có
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Intent i1 = new Intent(Home.this, Login.class);
@@ -195,16 +207,16 @@ public class Home extends AppCompatActivity {
                                 Toast.makeText(Home.this,"Đã đăng xuất", Toast.LENGTH_SHORT).show();
                             }
                         });
-                        builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() { // tạo và bắt sự kiện khi chọn không
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                             }
                         });
                         dialog = builder.create();
-                        dialog.show();
+                        dialog.show();// show dialog
                         break;
-                    case R.id.personal_menu:
+                    case R.id.personal_menu:// nếu item có id là thông tin cá nhân thì mở activity Personal
                         Intent i2 = new Intent(Home.this, Personal.class);
                         Home.this.startActivity(i2);
                         break;
@@ -228,9 +240,10 @@ public class Home extends AppCompatActivity {
                 //Toast.makeText(Home.this,"Đã Search", Toast.LENGTH_SHORT).show();
 
                 //recyclerView();
-                searchPetByInput(searchText.getText().toString());
-                searchText.clearFocus();
-                hideKeyboard(Home.this, view);
+                searchPetByInput(searchText.getText().toString());// hàm tìm kiếm danh sách các loại thú cưng bằng input search
+                // hiện tại query đang search theo tên giống và mã giống
+                searchText.clearFocus(); // bỏ focus khỏi input search
+                hideKeyboard(Home.this, view);// hide bàn phím
             }
 
             private void recyclerView() {

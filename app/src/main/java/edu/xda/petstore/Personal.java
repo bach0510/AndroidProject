@@ -19,7 +19,7 @@ public class Personal extends AppCompatActivity {
 
     TextView nameTxt , telTxt , addressTxt , usernameTxt , passwordTxt;
 
-    boolean validateBeforeSave(){
+    boolean validateBeforeSave(){ // validate các thông tin cá nhân trước khi lưu
         if (TextUtils.isEmpty(nameTxt.getText())) {
             Toast.makeText(Personal.this, "Họ tên không được bỏ trống", Toast.LENGTH_SHORT).show();
             return false;
@@ -32,6 +32,7 @@ public class Personal extends AppCompatActivity {
             Toast.makeText(Personal.this, "Mật khẩu không được bỏ trống", Toast.LENGTH_SHORT).show();
             return false;
         }
+        // câu if dưới check xem trong database đã có người dùng này chưa thì thông báo người dùng đã tồn tại
         if(PetDatabase.getInstance(Personal.this).userDao().checkExist(usernameTxt.getText().toString(),Login.currentUser.getId()).size() > 0){
             Toast.makeText(Personal.this, "Tên đăng nhập đã tồn tại vui lòng chọn 1 tên đăng nhập khác", Toast.LENGTH_SHORT).show();
             return false;
@@ -39,7 +40,7 @@ public class Personal extends AppCompatActivity {
         return true;
     }
 
-    public void hideKeyboard(Context context, View view) {
+    public void hideKeyboard(Context context, View view) {// hide bàn phím
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Home.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
@@ -61,7 +62,7 @@ public class Personal extends AppCompatActivity {
         usernameTxt.setText(Login.currentUser.getUsername());
         passwordTxt.setText(Login.currentUser.getPassword());
 
-        findViewById(R.id.update_btn).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.update_btn).setOnClickListener(new View.OnClickListener() {// set sự kiện onclick cho nút cập nhật thông tin cá nhân
             @Override
             public void onClick(View view) {
                 if (validateBeforeSave()== true){
@@ -73,7 +74,7 @@ public class Personal extends AppCompatActivity {
                     user.setPassword(passwordTxt.getText().toString());
 
                     hideKeyboard(Personal.this,view);
-                    PetDatabase.getInstance(Personal.this).userDao().updateUser(user);
+                    PetDatabase.getInstance(Personal.this).userDao().updateUser(user);// lưu thông tin người dùng
                     Toast.makeText(Personal.this, "Đã cập nhật thông tin", Toast.LENGTH_SHORT).show();
 
 
@@ -81,11 +82,11 @@ public class Personal extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.back_button4).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.back_button4).setOnClickListener(new View.OnClickListener() {// set sự kiện cho nút back
             @Override
             public void onClick(View view) {
 //                finish();
-                Intent i = new Intent(Personal.this, Home.class);
+                Intent i = new Intent(Personal.this, Home.class);// mở Home
                 Personal.this.startActivity(i);
             }
         });

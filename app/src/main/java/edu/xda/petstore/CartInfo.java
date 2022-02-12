@@ -51,13 +51,13 @@ public class CartInfo extends AppCompatActivity {
         recyclerView = findViewById(R.id.rcv_cart);
 
         Intent i = getIntent();
-        searchCart(Login.currentUser.getId());
+        searchCart(Login.currentUser.getId());// hàm search thông tin giỏ hàng hiện tại của người dùng đăng nhập bằng cách search giỏ hàng theo id ng dùng hiện tại
 
 
         findViewById(R.id.back_button3).setOnClickListener(new View.OnClickListener() { // bắt sự kiện mở menu bằng menu icon
             @Override
             public void onClick(View view) {
-                finish();
+                finish();// finish activity hiện tại
 //                Intent i = new Intent(PetTypeList.this, Home.class);
 //                PetTypeList.this.startActivity(i);
             }

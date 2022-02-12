@@ -41,27 +41,30 @@ public class Login extends AppCompatActivity {
         login = findViewById(R.id.login);
         username = findViewById(R.id.username_txt);
         password = findViewById(R.id.password_txt);
+
+        // set sự kiện click cho nút đăng nhập
         login.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
+                // tìm kiếm user bằng username và password
                 currentUser = PetDatabase.getInstance(Login.this).userDao().searchUserByUserNameAndPass(username.getText().toString(),password.getText().toString());
-                if(currentUser != null){
+                if(currentUser != null){ // nếu tìm user bằng tài khoản ko bị null thì chuyển sang màn home
                     Intent i = new Intent(Login.this, Home.class);
-                    i.putExtra("userId",currentUser.getId());
-                    Login.this.startActivity(i);
+                    i.putExtra("userId",currentUser.getId());// truyển userId sang màn homme
+                    Login.this.startActivity(i); // start activity (mở intent màn home)
                 }
-                else {
+                else { //Nếu không tìm ra user thì thông báo thông tin tài khoản bị lỗi
                     Toast.makeText(Login.this,"Vui lòng check lại thông tin đăng nhập", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        findViewById(R.id.sign_up_btn).setOnClickListener(new View.OnClickListener(){
+        findViewById(R.id.sign_up_btn).setOnClickListener(new View.OnClickListener(){ // bắt sự kiện click cho nút đăng ký
 
             @Override
             public void onClick(View view) {
-
+                // mở màn đăng ký
                     Intent i = new Intent(Login.this, SignUp.class);
                     Login.this.startActivity(i);
 
