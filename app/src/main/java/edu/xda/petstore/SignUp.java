@@ -2,6 +2,7 @@ package edu.xda.petstore;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +20,12 @@ import edu.xda.petstore.model.User;
 public class SignUp extends AppCompatActivity {
 
     TextInputEditText nameTxt  , usernameTxt , passwordTxt;
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
 
     boolean validateBeforeSave(){// validate thông tin đăng ký trước khi insert mới từ thông tin vừa nhập
         if (TextUtils.isEmpty(nameTxt.getText())) {
@@ -59,21 +66,27 @@ public class SignUp extends AppCompatActivity {
         findViewById(R.id.sign_up).setOnClickListener(new View.OnClickListener() { // bắt sự kiện cho nutrs đăng ký
             @Override
             public void onClick(View view) {
-                if (validateBeforeSave()== true){// check validate trước khi insert thông tin đăng ký
-                    // tạo user mới từ nhưng thông tin mới nhập
-                    User user = new User(0,usernameTxt.getText().toString(),passwordTxt.getText().toString(),nameTxt.getText().toString(),"","");
+                if(!isNetworkConnected()){// neeus khong co internet thi khong cho login
+                    Toast.makeText(SignUp.this,"Vui lòng check lại internet", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    if (validateBeforeSave()== true){// check validate trước khi insert thông tin đăng ký
+                        // tạo user mới từ nhưng thông tin mới nhập
+                        User user = new User(0,usernameTxt.getText().toString(),passwordTxt.getText().toString(),nameTxt.getText().toString(),"","");
 //                    user.setName(nameTxt.getText().toString());
 //                    user.setTel("");
 //                    user.setAddress("");
 //                    user.setUsername(usernameTxt.getText().toString());
 //                    user.setPassword(passwordTxt.getText().toString());
 
-                    hideKeyboard(SignUp.this,view);// hide bàn phím
-                    PetDatabase.getInstance(SignUp.this).userDao().insertUser(user);// insert user mới vào trong database
-                    Toast.makeText(SignUp.this, "Đã đăng ký thành công", Toast.LENGTH_SHORT).show(); // thông báo đăng ký thành công
-                    finish(); // finish activity hiện taị và quay lại activity trước đó (activity màn login )
+                        hideKeyboard(SignUp.this,view);// hide bàn phím
+                        PetDatabase.getInstance(SignUp.this).userDao().insertUser(user);// insert user mới vào trong database
+                        Toast.makeText(SignUp.this, "Đã đăng ký thành công", Toast.LENGTH_SHORT).show(); // thông báo đăng ký thành công
+                        finish(); // finish activity hiện taị và quay lại activity trước đó (activity màn login )
 
 
+                    }
                 }
             }
         });

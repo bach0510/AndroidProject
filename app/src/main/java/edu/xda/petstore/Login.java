@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -23,6 +24,12 @@ public class Login extends AppCompatActivity {
     TextInputEditText username, password;
 
     public static User currentUser = null;
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
 
     public void hideKeyboard(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Home.INPUT_METHOD_SERVICE);
@@ -47,16 +54,22 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                // tìm kiếm user bằng username và password
-                currentUser = PetDatabase.getInstance(Login.this).userDao().searchUserByUserNameAndPass(username.getText().toString(),password.getText().toString());
-                if(currentUser != null){ // nếu tìm user bằng tài khoản ko bị null thì chuyển sang màn home
-                    Intent i = new Intent(Login.this, Home.class);
-                    i.putExtra("userId",currentUser.getId());// truyển userId sang màn homme
-                    Login.this.startActivity(i); // start activity (mở intent màn home)
+                if(!isNetworkConnected()){// neeus khong co internet thi khong cho login 
+                    Toast.makeText(Login.this,"Vui lòng check lại internet", Toast.LENGTH_SHORT).show();
                 }
-                else { //Nếu không tìm ra user thì thông báo thông tin tài khoản bị lỗi
-                    Toast.makeText(Login.this,"Vui lòng check lại thông tin đăng nhập", Toast.LENGTH_SHORT).show();
+                else{
+                    // tìm kiếm user bằng username và password
+                    currentUser = PetDatabase.getInstance(Login.this).userDao().searchUserByUserNameAndPass(username.getText().toString(),password.getText().toString());
+                    if(currentUser != null){ // nếu tìm user bằng tài khoản ko bị null thì chuyển sang màn home
+                        Intent i = new Intent(Login.this, Home.class);
+                        i.putExtra("userId",currentUser.getId());// truyển userId sang màn homme
+                        Login.this.startActivity(i); // start activity (mở intent màn home)
+                    }
+                    else { //Nếu không tìm ra user thì thông báo thông tin tài khoản bị lỗi
+                        Toast.makeText(Login.this,"Vui lòng check lại thông tin đăng nhập", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
             }
         });
 
